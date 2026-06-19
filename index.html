@@ -2100,8 +2100,55 @@
   <p class="footer-copy">© 2025 Stefanie Fronert · Alle Rechte vorbehalten · ISBN 978-3-9823456-7-8</p>
 </footer>
 
+<!-- ─── AUDIO ─── -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="Song Steffi.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicBtn" onclick="toggleMusic()" title="Musik an/aus" style="
+    position: fixed;
+    bottom: 90px;
+    right: 1.2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(8,6,10,0.88);
+    border: 1.5px solid rgba(201,145,61,0.55);
+    color: #e8c68a;
+    font-size: 1.1rem;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    transition: background 0.2s, border-color 0.2s;
+  ">🔇</button>
+
 <!-- ─── SCRIPTS ─── -->
 <script>
+  /* ─── MUSIK ─── */
+  const audio = document.getElementById('bgMusic');
+  const btn   = document.getElementById('musicBtn');
+  audio.volume = 0.25;
+
+  function tryPlay() {
+    audio.play().then(() => { btn.textContent = '🎵'; }).catch(() => {});
+  }
+
+  function toggleMusic() {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = '🎵';
+    } else {
+      audio.pause();
+      btn.textContent = '🔇';
+    }
+  }
+
+  document.addEventListener('click', tryPlay, { once: true });
+  document.addEventListener('scroll', tryPlay, { once: true });
+
   /* NAV scroll effect */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
