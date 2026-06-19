@@ -1,0 +1,7 @@
+# Videos – zu groß für GitHub, separat hosten
+*.mp4
+*.mov
+*.avi
+
+# macOS
+.DS_Store
