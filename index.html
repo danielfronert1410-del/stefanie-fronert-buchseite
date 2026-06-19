@@ -1423,7 +1423,8 @@
 <!-- ─── HERO ─── -->
 <section id="hero">
   <!-- VIDEO BACKGROUND — place video-bg.mp4 in same folder -->
-  <video id="hero-video" autoplay muted loop playsinline poster="BuchFront.jpg">
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="BuchFront.jpg"
+    oncanplay="this.play()">
     <source src="Drohne Gipfel Felsen2.mp4" type="video/mp4" />
   </video>
 
@@ -2061,7 +2062,7 @@
 
 <!-- ─── FINAL CTA ─── -->
 <section id="final-cta">
-  <video id="cta-video" autoplay muted loop playsinline>
+  <video id="cta-video" autoplay muted loop playsinline preload="auto">
     <source src="Drohne Gipfel Felsen2.mp4" type="video/mp4" />
   </video>
   <div class="cta-overlay"></div>
