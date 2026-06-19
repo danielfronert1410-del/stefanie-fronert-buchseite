@@ -1,0 +1,12 @@
+{
+  "name": "stefanie-fronert-buchseite",
+  "version": "1.0.0",
+  "description": "Das 24-Stunden-Vorspiel – Buchseite von Stefanie Fronert",
+  "scripts": {
+    "build": "echo 'Static site'",
+    "start": "npx serve . -p 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
