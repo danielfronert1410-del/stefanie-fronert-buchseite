@@ -1,7 +1,5 @@
-# Videos – zu groß für GitHub, separat hosten
-*.mp4
-*.mov
-*.avi
+# Altes Video nicht mehr benötigt
+Drohne Gipfel Felsen.mp4
 
 # macOS
 .DS_Store
