@@ -2141,31 +2141,33 @@
   const audio = document.getElementById('bgMusic');
   const btn   = document.getElementById('musicBtn');
   audio.volume = 0.25;
-
-  // Button startet auf ON – Musik spielt sobald Browser es erlaubt
   btn.textContent = '🎵';
+  let musicStarted = false;
 
-  function tryPlay() {
-    audio.play().catch(() => {
-      // Browser hat Autoplay blockiert – beim nächsten Klick neu versuchen
-      btn.textContent = '🎵';
-    });
+  function startMusic() {
+    if (musicStarted) return;
+    musicStarted = true;
+    audio.play().catch(() => { musicStarted = false; });
   }
 
   function toggleMusic() {
     if (audio.paused) {
-      audio.play();
+      audio.play().catch(() => {});
       btn.textContent = '🎵';
+      musicStarted = true;
     } else {
       audio.pause();
       btn.textContent = '🔇';
     }
   }
 
-  // Sofort versuchen + nach erster Interaktion falls blockiert
-  tryPlay();
-  document.addEventListener('click', tryPlay, { once: true });
-  document.addEventListener('scroll', tryPlay, { once: true });
+  /* Auf jede Nutzer-Interaktion reagieren — außer Button-Klick */
+  ['click','touchstart','keydown'].forEach(evt => {
+    window.addEventListener(evt, function handler(e) {
+      if (e.target === btn || btn.contains(e.target)) return;
+      startMusic();
+    }, { passive: true });
+  });
 
   /* NAV scroll effect */
   const nav = document.getElementById('nav');
