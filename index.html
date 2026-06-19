@@ -2132,8 +2132,14 @@
   const btn   = document.getElementById('musicBtn');
   audio.volume = 0.25;
 
+  // Button startet auf ON – Musik spielt sobald Browser es erlaubt
+  btn.textContent = '🎵';
+
   function tryPlay() {
-    audio.play().then(() => { btn.textContent = '🎵'; }).catch(() => {});
+    audio.play().catch(() => {
+      // Browser hat Autoplay blockiert – beim nächsten Klick neu versuchen
+      btn.textContent = '🎵';
+    });
   }
 
   function toggleMusic() {
@@ -2146,6 +2152,8 @@
     }
   }
 
+  // Sofort versuchen + nach erster Interaktion falls blockiert
+  tryPlay();
   document.addEventListener('click', tryPlay, { once: true });
   document.addEventListener('scroll', tryPlay, { once: true });
 
